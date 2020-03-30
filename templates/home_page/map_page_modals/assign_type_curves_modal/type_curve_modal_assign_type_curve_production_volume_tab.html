@@ -1,0 +1,76 @@
+<!-- later css overrides prior css styles-->
+	<!-- style for modal -->
+	<LINK href="{{ url_for('static', filename='styles/map_page/map_page_modals/assign_type_curves_modal/assign_type_curves_modal.css')}}" rel="stylesheet" type="text/css">
+
+<p>	
+	<form name="type_curve_pad_production_volume_information_form" id="type_curve_pad_production_volume_information_form" autocomplete="off">
+		<!-- the type curve type is super important for the functionality. It is called whenever we save data associated with the modal in database. This is the id that the data is saved with.-->
+	    <input type='text' class="display_none" id="type_curve_type" name='type_curve_type' value='A'>
+	     	<table id="type_curve_Production_volume_table">
+	    		<tr>
+	    			<th id="first_column"> </th>
+					<th id="type_curve_imaginary_space"> &nbsp; </th>
+					<th id="type_curve_month_column">Month</th>
+	    			<th id="type_curve_second_column"> Produced Oil  </th>
+	    			<th id="type_curve_produced_water_column"> Produced Water  <br> </th>
+	    			<th id="type_curve_injected_steam"> Injected Steam </th>
+					<th id="type_curve_produced_gas_column"> Produced Gas </th>
+					<th id='type_curve_user_defined_column_1' class='user_defined_column_1'>User Defined Column 1</th>
+					<th id='type_curve_user_defined_column_2' class='user_defined_column_2'>User Defined Column 2</th>
+					<th id='type_curve_user_defined_column_3' class='user_defined_column_3'>User Defined Column 3</th>
+					<th id='type_curve_add_or_remove_column_buttons'>
+						<img src="{{url_for('static', filename='images/map_page/zoom_in.png')}}" id="type_curve_add_user_defined_column_image" > 
+						<br>
+						<img src="{{url_for('static', filename='images/map_page/zoom_out.png')}}" id="type_curve_remove_user_defined_column_image"> 
+					</th>
+					<th>
+						<div id='type_curve_export_drop_down_wrapper' class="dropdown">
+							<input type='button' id='type_curve_export_drop_down' value='...'></input>
+							<div id="type_curve_export_drop_down_div" class="dropdown-content">
+							  <a id='type_curve_export_drop_down_excel' href="#Excel">Export Excel File</a>
+							  <a id='type_curve_export_drop_down_csv' href="#CSV">Export CSV File</a>
+							  <a id='type_curve_export_drop_down_json' href="#JSON">Export JSON</a>
+							  <a id='type_curve_export_drop_down_xml' href="#XML">Export XML</a>
+							</div>
+						</div>
+					</th>
+	    		</tr>
+
+	    		<tr class="text_align_center">
+	    			<td>  </td>
+					<td>  &nbsp; </td>
+					<td> [mm/yy/dd] </td>
+	    			<td> [BPD] </td>
+	    			<td> [m3/Day] </td>
+	    			<td> [m3/Day] </td>
+					<td> [m3/Day] </td>
+					<td> [unit_1]</td>
+					<td> [unit_2]</td>
+					<td> [unit_3]</td>
+	    		</tr>
+
+	    		{% for row in list_of_rows %}
+	    			<tr class="text_align_center">
+	    				<td> {{row}} </td>
+						<td>  &nbsp; </td>
+						<td> <input type='text' id='Type_Curve_{{row}}_Forecasted_Month' name='Type_Curve_{{row}}_Forecasted_Month' class='modal_input_box' autocomplete="off" placeholder='Month in number' value='{{row}}'></td>
+	    				<td> <input type='text' id='Type_Curve_{{row}}_Produced_Oil' name='Type_Curve_{{row}}_Produced_Oil' class='modal_input_box' autocomplete="off"> </td>
+	    				<td> <input type='text' id='Type_Curve_{{row}}_Produced_Water' name='Type_Curve_{{row}}_Produced_Water' class='modal_input_box' autocomplete="off"> </td>
+	    				<td> <input type='text' id='Type_Curve_{{row}}_Injected_Steam' name='Type_Curve_{{row}}_Injected_Steam' class='modal_input_box' autocomplete="off"> </td>
+						<td> <input type='text' id='Type_Curve_{{row}}_Produced_Gas' name='Type_Curve_{{row}}_Produced_Gas' class='modal_input_box' autocomplete="off"> </td>
+						<td> <input type='text' id='Type_Curve_{{row}}_User_Defined_Column_1_Value' name='Type_Curve_{{row}}_User_Defined_Column_1_Value' class='modal_input_box' autocomplete="off"> </td>
+						<td> <input type='text' id='Type_Curve_{{row}}_User_Defined_Column_2_Value' name='Type_Curve_{{row}}_User_Defined_Column_2_Value' class='modal_input_box' autocomplete="off"> </td>
+						<td> <input type='text' id='Type_Curve_{{row}}_User_Defined_Column_3_Value' name='Type_Curve_{{row}}_User_Defined_Column_3_Value' class='modal_input_box' autocomplete="off"> </td>
+	    			</tr>
+	    		{% endfor %}
+			</table>
+			
+			    <input type="submit" name='save_button_for_type_curve_pad_forecasts' id='save_button_for_type_curve_pad_forecasts' value='Save'>
+			    <span id='type_curve_pad_production_volume_modal_save_check_mark' class="display_none">&#9989;</span>
+			</p>
+	</form>
+</p>
+
+<!-- Script that gives users ability to save type curve production volume to database  -->
+<script type="text/javascript" src="{{url_for('static', filename='scripts/map_page/map_page_modals/assign_type_curves_modal/asynchronously_save_type_curve_production_volume_to_database.js')}}"></script>
+

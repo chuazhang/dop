@@ -1,0 +1,310 @@
+<!-- ... ..- -. -.-. --- .-. ....... .--. .-. --- .--. . .-. - -.--  -->
+<html>
+<!-- ... ..- -. -.-. --- .-. ....... .--. .-. --- .--. . .-. - -.--  -->
+<head>
+	<title>Asset Distribution Map</title>
+
+	<!-- later css overrides prior css styles-->
+	<!-- style for modal tabs -->
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<!-- style for modal -->
+	<LINK href="{{ url_for('static', filename='styles/map_page/map_page_modal_style.css')}}" rel="stylesheet" type="text/css">
+	<!-- global style for map page -->
+	<LINK href="{{ url_for('static', filename='styles/map_page/global_style_for_map_page.css')}}" rel="stylesheet" type="text/css">
+
+	<!-- Sets the basepath for the library if not in same directory -->
+	<script type="text/javascript">
+		mxBasePath = '../../static/mx_core_code_src';
+	</script>
+	<!-- Loads and initializes the library -->
+	<script type="text/javascript" src="{{url_for('static', filename='mx_core_code_src/js/mxClient.js')}}"></script>
+	<!-- Loads and initializes the script that allows us to drop items from toolbar to graph  -->
+	<script type="text/javascript" src="{{url_for('static', filename='scripts/map_page/add_Toolbar_Item_from_toolbar_to_graph_script.js')}}"></script>
+	<!-- plotly js needed for graph -->
+	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script> 
+
+	
+
+	<!-- jquery is needed for ajax -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> 
+
+	<!-- Example code -->
+	<script type="text/javascript">
+		// Program starts here. Creates a sample graph in the
+		// DOM node with the specified ID. This function is invoked
+		// from the onLoad event handler of the document (see below).
+		function main()
+		{
+			// Defines an icon for creating new connections in the connection handler.
+			// This will automatically disable the highlighting of the source vertex.
+			mxConnectionHandler.prototype.connectImage = new mxImage('static/images/map_page/connector.gif', 16, 16);
+		
+			// Checks if browser is supported
+			if (!mxClient.isBrowserSupported())
+			{
+				// Displays an error message if the browser is
+				// not supported.
+				mxUtils.error('Browser is not supported!', 200, false);
+			}
+			else
+			{
+				// Creates the div for the toolbar
+				var tbContainer = document.createElement('div');
+				
+				document.body.appendChild(tbContainer);
+			
+				// Creates new toolbar without event processing
+				var toolbar = new mxToolbar(tbContainer);
+				toolbar.enabled = false
+				
+				// Creates the div for the graph
+				container = document.createElement('div');
+				
+				document.body.appendChild(container);
+				
+				// Workaround for Internet Explorer ignoring certain styles
+				if (mxClient.IS_QUIRKS)
+				{
+					document.body.style.overflow = 'hidden';
+					new mxDivResizer(tbContainer);
+					new mxDivResizer(container);
+				}
+	
+				// Creates the model and the graph inside the container
+				// using the fastest rendering available on the browser
+				var model = new mxGraphModel();
+				var graph = new mxGraph(container, model);
+				graph.dropEnabled = true;
+				
+				// Matches DnD inside the graph
+				mxDragSource.prototype.getDropTarget = function(graph, x, y)
+				{
+					var cell = graph.getCellAt(x, y);
+					
+					if (!graph.isValidDropTarget(cell))
+					{
+						cell = null;
+					}
+					
+					return cell;
+				};
+
+				// Enables new connections in the graph
+				graph.setConnectable(true);
+				graph.setMultigraph(false);
+
+				// Automatically handle parallel edges
+				var layout = new mxParallelEdgeLayout(graph);
+				layout.spacing = 70;
+ 				var layoutMgr = new mxLayoutManager(graph);
+ 				
+ 				layoutMgr.getLayout = function(cell)
+				{
+					if (cell.getChildCount() > 0)
+					{
+						return layout;
+					}
+				};
+
+				// Stops editing on enter or escape keypress
+				var keyHandler = new mxKeyHandler(graph);
+				var rubberband = new mxRubberband(graph);
+
+				//EXTRA CODE TO CORE CODE
+				//allows users to double click cell to get dialog box
+				graph.addListener(mxEvent.DOUBLE_CLICK, function(sender, evt)
+				{
+					actions_after_mxgraph_cell_double_click(sender=sender,evt=evt,graph=graph);
+				});
+				
+				//allows for xml to database parsing
+				graph.addListener(mxEvent.CELLS_ADDED, function(sender, evt)
+				{
+					update_database_asynchronously_with_latest_map_xml(graph=graph);
+				});
+
+				Asynchronously_Decode_And_Display_Xml_To_Mxgraph_Graph(graph=graph);
+
+				// add pan functionality thus giving users ability to move map
+				Add_Pan_Function_To_Map(graph=graph);
+
+				// code for adding own styled stencil and giving it collape functionality, also modifies container style
+				Modify_Stencil_Container(tbContainer, container);
+				Modify_Stencil_Arrow(tbContainer, container);
+				Update_Edge_Label_After_Connection_With_Another_Node_And_Edge_Color_Accordingly(graph=graph);
+				Zoom_In_Out_Of_Map(graph=graph);
+				//END OF EXTRA CODE BLOCK
+
+				
+				var addVertex = function(icon, w, h, style,asset_type)
+				{
+					var vertex = new mxCell(null, new mxGeometry(0, 0, w, h), style);
+					vertex.setVertex(true);
+					vertex.setValue(asset_type)
+				
+					add_Toolbar_Item_from_toolbar_to_graph(graph=graph, toolbar=toolbar, prototype=vertex, image=icon, mxUtils=mxUtils);
+				};
+				
+				
+				addVertex('static/images/map_page/toolbar_images/CPF.png', 80, 80, 'shape=image;image=static/images/map_page/toolbar_images/CPF.svg;verticalLabelPosition=bottom;verticalAlign=top;fontFamily=Tahoma;','CPF');
+                addVertex('static/images/map_page/toolbar_images/Hub.png', 80, 80, 'shape=image;image=static/images/map_page/toolbar_images/Hub.svg;verticalLabelPosition=bottom;verticalAlign=top;fontFamily=Tahoma;','Hub');
+                addVertex('static/images/map_page/toolbar_images/Pad.png', 80, 80, 'shape=image;image=static/images/map_page/toolbar_images/Pad.svg;verticalLabelPosition=bottom;verticalAlign=top;fontFamily=Tahoma;','Pad'); 
+
+				
+			}
+		}
+
+		
+
+	</script>
+</head>
+
+<!-- ... ..- -. -.-. --- .-. ....... .--. .-. --- .--. . .-. - -.--  -->
+
+<!-- Calls the main function after the page has loaded. Container is dynamically created. -->
+<body onload="main();">
+
+	<!-- most of the time, we will be using the cell id input box in the modals (since we are serializing the form), but sometimes we might need to use this-->
+	<input type='number' class='display_none' id="cell_id_of_cell_selected" name='cell_id_of_cell_selected'>
+
+	{% include 'home_page/map_page_navigation_bars/logo_and_scenario_name.html' %}
+	{% include 'home_page/zoom_in_out_icons.html' %}
+	{% include 'home_page/map_page_modals/log_out_modal/log_out_modal.html' %}
+	{% include 'home_page/map_page_modals/save_scenario_modal/save_scenario_modal.html' %}
+	{% include 'home_page/map_page_modals/track_historical_changes_made_to_scenario_modal/track_historical_changes_made_to_scenario_modal.html' %}
+	{% include 'home_page/map_page_modals/invite_user_modal/invite_user_modal.html' %}
+	{% include 'home_page/map_page_modals/base_case_modal/base_case_modal.html' %}
+	{% include 'home_page/hamburger_menu/hamburger_menu.html' %}
+	
+	<button id="Summarize_Asset_Connections" style="float:left;display:none;">Summarize Asset Connections</button>
+	<button id="Assign_Type_Curves" style="float:left;display:none;">Assign Type Curves</button>
+	
+	
+	<!-- The Modal -->
+	<div id="EmulsionLineModal" class="modal">
+
+	  <!-- Modal content -->
+	  <div class="modal-content">
+	    <span class="close" id='EmulsionLineModalClose'></span>
+		<p>Capacity Constraint</p>
+
+		<span id='graph_theory_analysis_span' class='display_none'> Actual Possible Maximum flow: <span id="actual_possible_maximum_throughput_span"> </span> m3/day </span>
+	    
+	    <p>	
+	    	<form name="emulsion_line_constraints_information_form" id="emulsion_line_constraints_information_form" autocomplete="off">
+	    		<!-- needed to have cell id stored here to call from backend when storing in database -->
+				<input type='number' class='display_none' id="cell_id_of_emulsion_line_cell_selected" name='cell_id_of_emulsion_line_cell_selected'>
+		    	<input type="number" id="line_capacity" name="line_capacity">
+		    	m3/day
+		    	<p>
+			    	<input type="submit" name='save_button_for_emulison_constraint' id='save_button_for_emulison_constraint' value='Save'>
+			    	<span id='emulsion_line_modal_save_check_mark' class='display_none'>&#9989;</span>
+			    </p>
+	    	</form>
+	     </p>
+	  </div>
+
+	</div>
+
+	<!-- The Pad Modal -->
+	<div id="PadModal" class="modal">
+
+	  <!-- Modal content -->
+	  <div class="modal-content">
+		<span class="close" id='PadModalClose'></span>
+		
+		{% include 'home_page/map_page_modals/pad_modal/pad_modal.html' %}
+	    
+	  </div>
+
+	</div>
+	<!-- ... ..- -. -.-. --- .-. ....... .--. .-. --- .--. . .-. - -.--  -->
+
+	<!-- The CPF Modal -->
+	<div id="CPFModal" class="modal">
+
+		<!-- Modal content -->
+		<div class="modal-content">
+		  <span class="close" id='CPFModalClose'></span>
+		  
+		  {% include 'home_page/map_page_modals/cpf_modal/cpf_modal.html' %}
+		  
+		</div>
+  
+	</div>
+	<!-- ... ..- -. -.-. --- .-. ....... .--. .-. --- .--. . .-. - -.--  -->
+
+	<!-- The Asset Summary Modal -->
+	<div id="AssetSummaryModal" class="modal">
+
+		<!-- Modal content -->
+		<div class="modal-content">
+		  <span class="close" id='AssetSummaryModalClose'></span>
+		  
+		{% include 'home_page/map_page_modals/asset_summary_modal.html' %}
+		  
+		</div>
+  
+	</div>
+
+	<!-- Assign Type Curves Modal -->
+	<div id="AssignTypeCurvesModal" class="modal">
+
+		<!-- Modal content -->
+		<div class="modal-content">
+		  <span class="close" id='AssignTypeCurvesModalClose'></span>
+		
+		  {% include 'home_page/map_page_modals/assign_type_curves_modal/assign_type_curves_modal.html' %}
+
+		</div>
+  
+	</div>
+	<!-- Loads and initializes the script which opens up cell dialog box after double clicking  -->
+	<script type="text/javascript" src="{{url_for('static', filename='scripts/map_page/actions_after_mxgraph_cell_double_click.js')}}"></script>
+	<!-- Loads and initializes the script which uses AJAX to update database  -->
+	<script type="text/javascript" src="{{url_for('static', filename='scripts/map_page/update_database_asynchronously_with_latest_map_xml_script.js')}}"></script>
+	<!-- Loads and initializes the script that helps find the maximum emulsion flow allowed for the cell clicked -->
+	<script type="text/javascript" src="{{url_for('static', filename='scripts/map_page/asynchronously_decode_and_display_xml_to_mxgraph_graph.js')}}"></script>
+	<!-- Script that aggregates all cpf descendant pads prdoctuion volumes asynchronously -->
+	<script type="text/javascript" src="{{url_for('static', filename='scripts/map_page/map_page_modals/cpf_modal/asynchronously_aggegrate_all_cpf_descendant_pads_production_volumes.js')}}"></script>
+	<!-- Loads and initializes the script which loads modal  -->
+	<script type="text/javascript" src="{{url_for('static', filename='scripts/map_page/map_page_modals_closure_script.js')}}"></script>
+	<!-- Loads and initializes the script which uses AJAX to save pad production volumen data in database  -->
+	<script type="text/javascript" src="{{url_for('static', filename='scripts/map_page/map_page_modals/pad_modal/asynchronously_save_pad_production_volume_to_database.js')}}"></script>
+	<!-- Loads and initializes the script which uses AJAX to save constraints in database  -->
+	<script type="text/javascript" src="{{url_for('static', filename='scripts/map_page/asynchronously_save_constraints_to_database.js')}}"></script>
+	<!-- Loads and initializes the script which lets users move between input boxes using keyboard  -->
+	<script type="text/javascript" src="{{url_for('static', filename='scripts/map_page/use_arrows_to_move_input_boxes.js')}}"></script>
+	<!-- Loads and initializes the script which lets users change tabs in modals  -->
+	<script type="text/javascript" src="{{url_for('static', filename='scripts/map_page/change_tabs_in_modal.js')}}"></script>
+	<!-- Loads and initializes the script which gives effect to stencil  -->
+	<script type="text/javascript" src="{{url_for('static', filename='scripts/map_page/map_page_stencil/modify_stencil_container.js')}}"></script>
+	<script type="text/javascript" src="{{url_for('static', filename='scripts/map_page/map_page_stencil/modify_stencil_arrow.js')}}"></script>
+	<!-- Loads and initializes the script which summarizes the network in the canvas into an even easier to read canvas  -->
+	<script type="text/javascript" src="{{url_for('static', filename='scripts/map_page/map_page_modals/asset_summary.js')}}"></script>
+	<!-- Loads and initializes the script which updates edge label after connection with another node and updates it's color respectively  -->
+	<script type="text/javascript" src="{{url_for('static', filename='scripts/map_page/update_edge_label_after_connection_with_another_node_and_edge_color_accordingly.js')}}"></script>
+	<!-- Loads and initializes the script which updates edge label after connection with another node and updates it's color respectively  -->
+	<script type="text/javascript" src="{{url_for('static', filename='scripts/map_page/zoom_in_out_of_map.js')}}"></script>
+	<!-- Loads and initializes the script which lets user move the map around  -->
+	<script type="text/javascript" src="{{url_for('static', filename='scripts/map_page/add_pan_function_to_map.js')}}"></script>
+	<!-- Loads and initializes the script gives field name (database name) and maps it to mapping defination  -->
+	<script type="text/javascript" src="{{url_for('static', filename='scripts/map_page/map_page_modals/field_name_mapping_dictionary_defination.js')}}"></script>
+	<!-- Loads and initializes the script gives ability to use calendar UI -->
+	<script type="text/javascript" src="{{url_for('static', filename='scripts/map_page/map_page_modals/month_date_picker.js')}}"></script>
+	<!-- Loads and initializes the script gives ability copy and paste data from excel -->
+	<script type="text/javascript" src="{{url_for('static', filename='scripts/map_page/map_page_modals/copy_from_clipboard_and_paste_to_table.js')}}"></script>
+	<!-- Loads and initializes the script that helps find the maximum emulsion flow allowed for the cell clicked -->
+	<script type="text/javascript" src="{{url_for('static', filename='scripts/map_page/networkx_scripts/asynchronously_graph_theory_maximum_flow_in_emulsion_line.js')}}"></script>
+	<!-- Script that gives users ability to add or remove user defined columns in prodcution volume  -->
+	<script type="text/javascript" src="{{url_for('static', filename='scripts/map_page/map_page_modals/add_or_remove_user_defined_columns_in_type_curve_or_pad_production_volume.js')}}"></script>
+	<!-- Loads and initializes the script that generates apis or helps with exports -->
+	<script type="text/javascript" src="{{url_for('static', filename='scripts/map_page/export_or_generate_apis/asynchronously_grab_database_table_data_for_generate_api.js')}}"></script>
+	<!-- Pop up drop down list -->
+	<script type="text/javascript" src="{{url_for('static', filename='scripts/map_page/map_page_modals/popup_drop_down.js')}}"></script>
+	<!-- Download.js, http://danml.com/download.html -->
+	<script type="text/javascript" src="{{url_for('static', filename='scripts/map_page/download.js')}}"></script>
+
+</body>
+</html>
+<!-- ... ..- -. -.-. --- .-. ....... .--. .-. --- .--. . .-. - -.--  -->

@@ -1,0 +1,19 @@
+<!-- later css overrides prior css styles-->
+    
+<div class="w3-container">
+  
+  <div class="w3-bar tab">
+    <button id='type_curve_tab_a_button' class="w3-bar-item w3-button type_curve_tablink tab_selected">Type Curve A</button>
+    <button id='type_curve_tab_b_button' class="w3-bar-item w3-button type_curve_tablink">Type Curve B</button>
+    <button id='type_curve_tab_c_button' class="w3-bar-item w3-button type_curve_tablink">Type Curve C</button>
+    <button id='type_curve_tab_d_button' class="w3-bar-item w3-button type_curve_tablink">Type Curve D</button>
+  </div>
+  <div class="w3-container w3-border">
+    {% include 'home_page/map_page_modals/assign_type_curves_modal/type_curve_modal_assign_type_curve_production_volume_tab.html' %}
+  </div>
+</div>
+
+<!-- Script that gives users ability to save type curve production volume to database  -->
+<script type="text/javascript" src="{{url_for('static', filename='scripts/map_page/map_page_modals/assign_type_curves_modal/switch_between_type_curves_tabs_in_assign_type_curves_modal.js')}}"></script>
+
+

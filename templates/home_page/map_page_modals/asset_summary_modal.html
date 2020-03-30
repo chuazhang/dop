@@ -1,0 +1,19 @@
+<LINK href="{{ url_for('static', filename='styles/map_page/map_page_modals/asset_summary_modal/asset_summary_modal.css')}}" rel="stylesheet" type="text/css">
+
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Asset Summary</p>
+
+    <div class='asset_summary_select_radio'>
+        <input id='asset_summary_emulsion_radio' type="radio" name="asset_summary_radio" checked class="asset_summary_tablink active">Emulsion</input>
+        <br>
+        <input id='asset_summary_steam_radio' type="radio" name="asset_summary_radio" class="asset_summary_tablink">Steam</input>
+    </div>
+    <br><br>
+    <div id='asset_summary_scroll'>
+        <div id="asset_summary_emulsion" class="asset_summary_tab">
+            <svg id='asset_summary_emulsion_svg'></svg>
+        </div>
+        <div id="asset_summary_steam" class="asset_summary_tab display_none">
+            <svg id='asset_summary_steam_svg'></svg>
+        </div>
+    </div>
+

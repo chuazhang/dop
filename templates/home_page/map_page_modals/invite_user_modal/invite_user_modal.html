@@ -1,0 +1,41 @@
+<LINK href="{{ url_for('static', filename='styles/map_page/map_page_modals/invite_user_modal/invite_user_modal.css')}}" rel="stylesheet" type="text/css">
+
+    <!-- The Modal -->
+	  <div id="InviteUserModal" class='modal'>
+
+		<!-- Modal content -->
+		<div class="modal-content">
+			  <div class="close" id='InviteUserModalClose'></div>
+		  <p>Invite User</p>
+			<table>
+				<tr><td>Email:</td>
+					<td><input id='invite_user_email_input' class='normal_input' placeholder="test@test.com" required></td></tr>
+				<tr>
+					<td>Role</td>
+					<td><select>
+							<option value="" disabled selected>Select Role</option>
+							<option value="Processing_Enginner">Processing Engineer</option>
+							<option value="Economics">Economics</option>
+							<option value="DCL">DCL</option>
+							<option value="Resource">Resource</option>
+						</select>
+					</td></tr>
+			</table>
+			<br>
+			<table>
+				<tr><td>List of Previous Invited Users</td></tr>
+				<tr><td><ul>
+							<li>khris@suncor.com,Processing Engineer</li>
+							<li>rgarcia@suncor.com,Economics</li>
+							<li>kenja@suncor.com,DCL</li>
+							<li>jonas@suncor.com,Resource</li>
+						</ul></td></tr>
+			</table>		  
+			<br>
+			<input type='button' id='invite_user_email_send' value='Invite'>
+		</div>
+  
+	  </div>
+
+<!-- Display invite user modal dialog -->
+<script type="text/javascript" src="{{url_for('static', filename='scripts/map_page/map_page_modals/invite_user_modal/invite_user_modal.js')}}"></script>

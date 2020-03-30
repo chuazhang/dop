@@ -1,0 +1,103 @@
+<!-- later css overrides prior css styles-->
+	<!-- style for modal -->
+	<LINK href="{{ url_for('static', filename='styles/map_page/map_page_modals/pad_modal/pad_modal_production_volume_tab.css')}}" rel="stylesheet" type="text/css">
+			
+<p>	
+	<form name="pad_production_volume_information_form" id="pad_production_volume_information_form" autocomplete="off">
+	    <!-- the cell id is super important for the functionality. It is called whenever we save data associated with the modal in database. This is the id that the data is saved with.-->
+	    <input type='number' class="display_none" id="cell_id_of_pad_cell_selected" name='cell_id_of_pad_cell_selected'>
+		<p>
+			<input type="text" id='Pad_Name' name='Pad_Name' placeholder="Pad name">
+			<select id="load_type_curve" name="load_type_curve">
+				<option value="" disabled selected>Load a predefined type curve</option>
+				<option value="Type_Curve_A">Type Curve A</option>
+				<option value="Type_Curve_B">Type Curve B</option>
+				<option value="Type_Curve_C">Type Curve C</option>
+				<option value="Type_Curve_D">Type Curve D</option>
+				<option value="add_custom_type_curve">Add Custom Type Curve</option>
+			</select>
+		</p>
+
+	    	<table id="Production_volume_table">
+	    		<tr>
+	    			<th id="first_column"> </th>
+					<th id="imaginary_space">  &nbsp; </th>
+					<th id="date_column">Date</th>
+	    			<th id="second_column"> Produced Oil  </th>
+	    			<th id="produced_water_column"> Produced Water  <br> </th>
+	    			<th id="injected_steam"> Injected Steam </th>
+					<th id="produced_gas_column"> Produced Gas </th>
+					<!-- LOOP THIS -->
+					<!-- Changes needed -->
+					<!-- style to be in CSS -->
+					<!-- listener instead of onclick -->
+					{% for variable in range(1,4) %}
+					<th>
+						<table align="center" id='user_defined_column_table_{{variable}}'><tr><td><label id='user_defined_column_label_{{variable}}' class='label_bold_blue' >Column {{variable}}</label></td>
+							<td><img id='user_defined_column_pencil_{{variable}}' src='static/images/map_page/Pencil Button.svg' class='pencil'></td></tr></table>
+							<input id='user_defined_column_{{variable}}' type='text' class='modal_input_box display_none' value='Column {{variable}}' autocomplete='off' required>
+					</th>
+					{% endfor %}
+					<!-- END OF LOOP-->
+					<th>
+						<img src="{{url_for('static', filename='images/map_page/zoom_in.png')}}" id="add_user_defined_column_image"> 
+						<br>
+						<img src="{{url_for('static', filename='images/map_page/zoom_out.png')}}" id="remove_user_defined_column_image"> 
+					</th>
+				</tr>
+				<tr class="text_align_center">
+	    			<td>  </td>
+					<td>  &nbsp; </td>
+					<td> [mm/dd/yyyy] </td>
+					<td> [bbl/day]</td>
+	    			<td>[m3/day]</td>
+	    			<td>[m3/day]</td>
+					<td>[m3/day]</td>
+					<!-- LOOP THIS -->
+					<!-- Changes needed -->
+					<!-- style to be in CSS -->
+					<!-- listener instead of onclick -->
+					{% for variable in range(1,4) %}
+					<td>
+						<table align="center" id='user_defined_column_table_unit_{{variable}}'><tr><td><label id='user_defined_column_label_unit_{{variable}}' class='label_blue'>[unit {{variable}}]</label></td>
+							<td><img id='user_defined_column_pencil_unit_{{variable}}' src='static/images/map_page/Pencil Button.svg' class='pencil'></td></tr></table>
+							<input id='user_defined_column_unit_{{variable}}' type='text' class='modal_input_box display_none' value='[unit {{variable}}]' autocomplete='off' required>
+					</td>
+					{% endfor %}
+					<!-- END OF LOOP -->
+	    		</tr>
+
+	    		{% for row in list_of_rows %}
+	    			<tr class="text_align_center">
+	    				<td> {{row}} </td>
+						<td>  &nbsp; </td>
+						<td> <input type='text' id='{{row}}_Forecasted_Date' class="modal_input_box monthpicker" data-start-year="2020" data-final-year="2120" data-selected-year="2021" name='{{row}}_Forecasted_Date' autocomplete="off" placeholder='mm/dd/yyyy' value='0{{row}}/01/2021'></td>
+	    				<td> <input type='text' id='{{row}}_Produced_Oil' name='{{row}}_Produced_Oil' class='modal_input_box' autocomplete="off" onkeypress='validate(event)'> </td>
+	    				<td> <input type='text' id='{{row}}_Produced_Water' name='{{row}}_Produced_Water' class='modal_input_box' autocomplete="off" onkeypress='validate(event)'> </td>
+	    				<td> <input type='text' id='{{row}}_Injected_Steam' name='{{row}}_Injected_Steam' class='modal_input_box' autocomplete="off" onkeypress='validate(event)'> </td>
+						<td> <input type='text' id='{{row}}_Produced_Gas' name='{{row}}_Produced_Gas' class='modal_input_box' autocomplete="off" onkeypress='validate(event)'> </td>
+						<td> <input type='text' id='{{row}}_User_Defined_Column_1_Value' name='{{row}}_User_Defined_Column_1_Value' class='modal_input_box' autocomplete="off" onkeypress='validate(event)'> </td>
+						<td> <input type='text' id='{{row}}_User_Defined_Column_2_Value' name='{{row}}_User_Defined_Column_2_Value' class='modal_input_box' autocomplete="off" onkeypress='validate(event)'> </td>
+						<td> <input type='text' id='{{row}}_User_Defined_Column_3_Value' name='{{row}}_User_Defined_Column_3_Value' class='modal_input_box' autocomplete="off" onkeypress='validate(event)'> </td>
+	    			</tr>
+	    		{% endfor %}
+			</table>
+			
+			    <input type="submit" name='save_button_for_pad_forecasts' id='save_button_for_pad_forecasts' value='Save'>
+			    <span id='pad_production_volume_modal_save_check_mark' class="display_none">&#9989;</span>
+			</p>
+	</form>
+</p>
+
+<!-- Script that grabs forecasted production volume saved in the database by user and displays it in the pad modal production volume table  -->
+<script type="text/javascript" src="{{url_for('static', filename='scripts/map_page/map_page_modals/pad_modal/asynchronously_grab_production_volume_for_pads_from_database.js')}}"></script>
+<!-- Script that copy from clipboard and paste to table -->
+<script type="text/javascript" src="{{url_for('static', filename='scripts/map_page/map_page_modals/copy_from_clipboard_and_paste_to_table.js')}}"></script>
+<!-- Change production volume user defined column name and unit -->
+<script type="text/javascript" src="{{url_for('static', filename='scripts/map_page/map_page_modals/pad_modal/change_production_volume_user_defined_column_name_and_unit.js')}}"></script>
+<!-- Month picker from Lucianocosta -->
+<script type="text/javascript" src="{{url_for('static', filename='scripts/map_page/map_page_modals/pad_modal/jquery.mtz.monthpicker.js')}}"></script>
+<!-- Input field allow numeric only -->
+<script type="text/javascript" src="{{url_for('static', filename='scripts/map_page/map_page_modals/pad_modal/input_field_allow_enter_numeric_only.js')}}"></script>
+<!-- Asynchronously grab type curve data for pads from database -->
+<script type="text/javascript" src="{{url_for('static', filename='scripts/map_page/map_page_modals/pad_modal/asynchronously_grab_type_curve_data_for_pads_from_database.js')}}"></script>

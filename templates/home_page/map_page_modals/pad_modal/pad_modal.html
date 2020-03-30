@@ -1,0 +1,45 @@
+<!-- later css overrides prior css styles-->
+	<!-- style for graph tab of pad modal -->
+  <LINK href="{{ url_for('static', filename='styles/map_page/map_page_modals/pad_modal/pad_modal_graph.css')}}" rel="stylesheet" type="text/css">
+
+    
+<div class="w3-container">
+  
+    <div class="w3-bar tab">
+      <button id='pad_production_volume_tab_button' class="w3-bar-item w3-button pad_tablink tab_selected">Production Volume</button>
+      <button id='pad_charts_tab_button' class="w3-bar-item w3-button pad_tablink">Charts</button>
+      <button id='pad_outage_dates_tab_button' class="w3-bar-item w3-button pad_tablink">Outage Dates</button>
+      <button id='pad_export_tab_button' class="w3-bar-item w3-button pad_tablink">Export</button>
+    </div>
+    
+    <div id="Production_Volume_Tab" class="w3-container w3-border pad_tab">
+      {% include 'home_page/map_page_modals/pad_modal/pad_modal_production_volume_tab.html' %}
+    </div>
+  
+    <div id="Charts_Tab" class="w3-container w3-border pad_tab display_none">
+      <div id='pad_modal_graph_tab_graph_div'>
+          
+      </div> 
+    </div>
+  
+    <div id="Outage_Dates_Tab" class="w3-container w3-border pad_tab display_none">
+      <h2>Outage Date</h2>
+      <p>Outage Dates for the pads will go here.</p>
+    </div>
+    <div id="Export_Tab" class="w3-container w3-border pad_tab display_none">
+      <h2>Choose Export Format</h2>
+      <select id='pad_export_type'>
+        <option disabled selected>Select export type</option>
+        <option value='Excel'>Excel</option>
+        <option value='CSV'>CSV</option>
+        <option value='JSON'>JSON</option>
+        <option value='XML'>XML</option>
+      </select>
+      <p id='pad_export_url'>&nbsp;</p>
+    </div>
+  </div>
+
+  <!-- asynchronously graphs the production volume graph for this pad modal -->
+  <script type="text/javascript" src="{{url_for('static', filename='scripts/map_page/map_page_modals/pad_modal/asynchronously_graph_production_volume_for_pad_modal.js')}}"></script>
+
+  

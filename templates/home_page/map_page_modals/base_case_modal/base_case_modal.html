@@ -1,0 +1,29 @@
+<LINK href="{{ url_for('static', filename='styles/map_page/map_page_modals/base_case_modal/base_case_modal.css')}}" rel="stylesheet" type="text/css">
+
+    <!-- The Modal -->
+	  <div id="BaseCaseModal" class="modal">
+
+		<!-- Modal content -->
+		<div class="modal-content">
+			  <div class="close" id='BaseCaseModalClose'></div>
+		  <p>Load/New Base Case</p>
+			<table>
+				<tr><td>
+					<select id='select_scenario_name'>
+						<option disabled selected>Select a base case here</option>
+						<option value='MC_EAST_LRP_2021'>Meadow Creek East LRP 2021</option>
+						<option value='MC_West_LRP_2021'>Meadow Creek West LRP 2021</option>
+						<option value='FB_LRP_2020'>Firebag LRP 2020</option>
+						<option value='McKay_LRP_2020'>McKay River LRP 2020</option>
+						<option value='Lewis_LRP_2020'>Lewis LRP 2020</option>
+					</select>
+					</td>
+					<td><input type='button' id='hamburger_business_load_base_case_button' value='Load'></td></tr>
+				<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+				<tr>
+					<td><input class='normal_input' placeholder="Enter New Base Case Name"></td>
+					<td><input type='button' value='New'></td></tr>
+			</table>
+		</div>
+  
+	  </div>

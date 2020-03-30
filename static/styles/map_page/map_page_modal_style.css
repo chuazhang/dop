@@ -1,0 +1,178 @@
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  font-family:Tahoma, Calibri, Verdana, Geneva, sans-serif;
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  border-radius: 15px;
+  box-shadow: 5px 5px 5px 0px #D5DFEB;
+}
+
+.modal_input_box {
+  color: #005596;
+  width: 70%;
+}
+
+.modal_input_box_bold {
+font-family: Tahoma, Calibri, Verdana, Geneva, sans-serif;
+font-weight: bolder;
+font-size: 12px;
+border-radius:6px;
+border:1px #D5DFEB solid;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:before {
+  display:inline-block;
+  position: relative;
+  right:10px;
+  top:10px;
+  width:25px;
+  height:25px;
+  content:"";
+  background:url("/static/images/map_page/modal_images/Close Button.svg") no-repeat 0 0;
+  background-size: 25px 25px;
+}
+
+#PadModal .close:before, #CPFModal .close:before, #AssignTypeCurvesModal .close:before {
+  display:inline-block;
+  position: relative;
+  right:20px;
+  top:30px;
+  width:25px;
+  height:25px;
+  content:"";
+  background:url("/static/images/map_page/modal_images/Close Button.svg") no-repeat 0 0;
+  background-size: 25px 25px;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#EmulsionLineModal .modal-content {
+  min-width: 200px;
+  width: 17%;
+  min-height: 220px;
+  height: 30%;
+}
+
+#PadModal .modal-content {
+  min-width: 700px;
+  width: 80%;
+}
+
+#AssignTypeCurvesModal .modal-content {
+  min-width: 500px;
+  width: 50%;
+}
+
+#CPFModal .modal-content {
+  min-width: 500px;
+  width: 50%;
+}
+
+#AssetSummaryModal .modal-content {
+  min-width: 800px;
+  width: 80%;
+  min-height: 140px;
+  height: 20%;
+}
+
+#asset_summary_scroll {
+  overflow:hidden;
+}
+
+.display_block {
+  display:block;
+}
+
+.display_cell {
+  display:cell;
+}
+
+.display_none {
+  display:none;
+}
+
+.pencil {
+  height:9;
+}
+
+.text_align_center {
+  text-align: center;
+}
+
+body {
+  min-height: 700px;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #2980B9;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  text-align: left;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown a:hover {background-color: #ddd;}
+
+.td_span_2 {
+  colspan:2;
+}
+
+.normal_input {
+  color: #005596;
+  width:100%;
+}
+
+.modal_table_width {
+  width:100%;
+}

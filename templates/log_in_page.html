@@ -1,0 +1,45 @@
+<html>
+<head>
+<title>In Situ Development Optimization Platform</title>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<!-- later css overrides prior css styles-->
+	<!-- global style for login page -->
+	<LINK href="{{ url_for('static', filename='styles/login_page/login_page_style.css')}}" rel="stylesheet" type="text/css">
+	
+<!-- progress bar move -->
+<script type="text/javascript" src="{{url_for('static', filename='scripts/login_page/login_page.js')}}"></script>
+
+</head>
+
+<body>
+	<div>
+		<img id='suncor_logo' src="{{url_for('static',filename='images/logos/Suncor_Energy_Logo.svg')}}">
+	</div>
+
+	<h1>In Situ Development Optimization Platform </h1>
+	<div id='log_in_div'>
+		<p><b>Please log in </b></p>
+		<form method="POST" autocomplete="off">
+			User Name: <br>
+			<input type="text" name="user_name" autofocus>
+			<br><br>
+			Password: 
+			<br><input type="password" name="password">
+			<br><br>
+			<input id='login_button' type='submit' name='log_in_page_button' value='Log In'>
+			<br>
+		</form>
+	</div>
+	<br>
+	<div id="login_progress">
+		<div id="login_progress_bar">&nbsp;</div>
+	</div>
+	<br><br><br>
+
+	<p> Please contact sumshrestha@suncor.com if you are interested to know more about the In Situ Development Optimization Project. </p>
+</body>
+</html>

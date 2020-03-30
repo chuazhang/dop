@@ -1,0 +1,32 @@
+<LINK href="{{ url_for('static', filename='styles/map_page/map_page_modals/log_out_modal/log_out_modal.css')}}" rel="stylesheet" type="text/css">
+
+    <!-- The Modal -->
+	  <div id="LogOutModal" class='modal'>
+
+		<!-- Modal content -->
+		<div class="modal-content">
+			  <div class="close" id='LogOutModalClose'></div>
+		  <p>My Account</p>
+			<table>
+				<tr>
+					<td>
+						<div class="imgHolder">
+							<img id='login_image' src="static/images/hamburger_menu/Login.png" />
+							<label class="image_label_centered logout_label">EH</label>
+						</div>
+					</td>
+					<td>
+						<label class="label_bold_black">Eric J. Huggins</label><br/>
+						<label class="label_black">EricJHuggins@for_example.com</label><br/>
+						<label class="label_bold_blue">My Account</label><br/>
+						<label id='logout_label' class="label_bold_blue">Sign Out</label><br/>
+					</td>
+				</tr>
+			</table>		  
+		</div>
+  
+	  </div>
+
+<!-- Display log out modal dialog -->
+<script type="text/javascript" src="{{url_for('static', filename='scripts/map_page/map_page_modals/log_out_modal/show_log_out_modal.js')}}"></script>
+

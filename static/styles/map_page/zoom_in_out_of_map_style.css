@@ -1,0 +1,25 @@
+.zoom_holder {
+    position: fixed;
+    right: 50px;
+    bottom: 50px;
+    z-index: 7000;
+    background-color: white;
+    border-collapse:separate;
+    border:1px #D5DFEB solid;
+    border-radius:6px;
+    -moz-border-radius:6px;
+  }
+
+#td_for_zoomin {
+  padding: 5px 6px 5px 6px;
+}
+
+#td_for_zoomout {
+  border-top:1px solid lightgray;
+  padding: 5px 6px 5px 6px;
+}
+
+#zoomIn, #zoomOut {
+  width:10;
+  height:10;
+}

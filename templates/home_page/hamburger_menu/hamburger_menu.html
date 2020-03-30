@@ -1,0 +1,72 @@
+<LINK href="{{ url_for('static', filename='styles/map_page/hamburger_menu/hamburger_menu.css')}}" rel="stylesheet" type="text/css">
+
+<main>
+    <nav>
+        <div class="nav-right hidden-xs">
+            <div class="button" id="btn">
+                <div class="bar top"></div>
+                <div class="bar middle"></div>
+                <div class="bar bottom"></div>
+            </div>
+        </div>
+    </nav>
+</main>
+
+<div class="sidebar">
+    <div class="sidebar-list">
+        <div class="sidebar-item">
+            <br><br><br>
+            <table id='hamburger_table'>
+                <tr id='hamburger_menu_business' class='hamburger_menu'>
+                    <td id='hamburger_menu_business_arrow' class='hamburger_menu_arrow'>&rtrif;</td>
+                    <td class='hamburger_menu_image_td'><img src="static/images/hamburger_menu/Business Case.svg" class='hamburger_menu_image'></td>
+                    <td>Business Case</td>
+                </tr>
+                <tr id='hamburger_menu_business_submenu' class='hamburger_submenu'>
+                    <td colspan="3">
+                        <img id='hamburger_business_save_scenario' src="static/images/hamburger_menu/Save Scenario Button.png">
+                        <img id='hamburger_business_load_case' src="static/images/hamburger_menu/Load Case Button.png">
+                        <img id='hamburger_business_import_data' src="static/images/hamburger_menu/Import Data Button.png">
+                        <img id='hamburger_business_track_history' src="static/images/hamburger_menu/History Button.png">
+                        <img id='hamburger_business_asset_summary' src="static/images/hamburger_menu/Summary Button.png">
+                        <img id='hamburger_business_type_curve' src="static/images/hamburger_menu/Type Curve Button.png">
+                    </td>
+                </tr>
+                <tr id='hamburger_menu_analysis' class='hamburger_menu'>
+                    <td id='hamburger_menu_analysis_arrow' class='hamburger_menu_arrow'>&rtrif;</td>
+                    <td><img src="static/images/hamburger_menu/Analysis.svg" class='hamburger_menu_image'></td>
+                    <td>Analysis</td>
+                </tr>
+                <tr id='hamburger_menu_analysis_submenu' class='hamburger_submenu'>
+                    <td colspan="3">
+                        <img id='hamburger_analysis_run_economics' src="static/images/hamburger_menu/Run Economics Button.png">
+                    </td>
+                </tr>
+                <tr id='hamburger_menu_workflow' class='hamburger_menu'>
+                    <td id='hamburger_menu_workflow_arrow' class='hamburger_menu_arrow'>&rtrif;</td>
+                    <td>&nbsp;</td>
+                    <td>Workflow Management</td>
+                </tr>
+                <tr id='hamburger_menu_workflow_submenu' class='hamburger_submenu'>
+                    <td colspan="3">
+                        <img id='hamburger_workflow_user_management' src="static/images/hamburger_menu/User Management Button.png">
+                        <img id='hamburger_workflow_work_assignment' src="static/images/hamburger_menu/Work Assignment Button.png">
+                    </td>
+                </tr>
+                <tr id='hamburger_menu_profile' class='hamburger_menu'>
+                    <td class='hamburger_menu_arrow'>&nbsp;</td>
+                    <td><img src="static/images/hamburger_menu/User Profile.svg" class='hamburger_menu_image'></td>
+                    <td>User Profile</td>
+                </tr>
+                <tr id='hamburger_menu_invite' class='hamburger_menu'>
+                    <td class='hamburger_menu_arrow'>&nbsp;</td>
+                    <td><img src="static/images/hamburger_menu/Invite Use.svg" class='hamburger_menu_image'></td>
+                    <td>Invite User to Scenario</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+       
+<!-- hamburger menu -->
+<script type="text/javascript" src="{{url_for('static', filename='scripts/map_page/hamburger_menu/hamburger_menu.js')}}"></script>

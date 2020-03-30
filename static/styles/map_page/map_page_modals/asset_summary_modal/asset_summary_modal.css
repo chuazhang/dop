@@ -1,0 +1,16 @@
+#AssetSummaryModal .modal-content {
+    width:55%;
+    height:100%;
+}
+
+#asset_summary_steam_svg, #asset_summary_emulsion_svg {
+    border:0px;
+    margin:0px;
+    padding:0px 0px 0px 0px;
+    width:100%;
+}
+
+.asset_summary_select_radio {
+    text-align: left;
+    float:right;
+}

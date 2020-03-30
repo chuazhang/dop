@@ -1,0 +1,17 @@
+var field_name_mapping_dictionary_defination = {};
+field_name_mapping_dictionary_defination['forecasted_date'] = 'Forecasted_Date';
+field_name_mapping_dictionary_defination['forecasted_month'] = 'Forecasted_Month';
+field_name_mapping_dictionary_defination['produced_oil'] = 'Produced_Oil';
+field_name_mapping_dictionary_defination['produced_water'] = 'Produced_Water';
+field_name_mapping_dictionary_defination['injected_steam'] = 'Injected_Steam';
+field_name_mapping_dictionary_defination['produced_gas'] = 'Produced_Gas';
+field_name_mapping_dictionary_defination['user_defined_column_1_value'] = 'User_Defined_Column_1_Value';
+field_name_mapping_dictionary_defination['user_defined_column_2_value'] = 'User_Defined_Column_2_Value';
+field_name_mapping_dictionary_defination['user_defined_column_3_value'] = 'User_Defined_Column_3_Value';
+field_name_mapping_dictionary_defination['aggregated_produced_oil'] = 'Produced_Oil';
+field_name_mapping_dictionary_defination['aggregated_produced_water'] = 'Produced_Water';
+field_name_mapping_dictionary_defination['aggregated_injected_steam'] = 'Injected_Steam';
+field_name_mapping_dictionary_defination['aggregated_produced_gas'] = 'Produced_Gas';
+field_name_mapping_dictionary_defination['aggregated_user_defined_column_1_value'] = 'User_Defined_Column_1_Value';
+field_name_mapping_dictionary_defination['aggregated_user_defined_column_2_value'] = 'User_Defined_Column_2_Value';
+field_name_mapping_dictionary_defination['aggregated_user_defined_column_3_value'] = 'User_Defined_Column_3_Value';

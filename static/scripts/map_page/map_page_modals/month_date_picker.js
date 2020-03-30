@@ -1,0 +1,1 @@
+$('.monthpicker').monthpicker();

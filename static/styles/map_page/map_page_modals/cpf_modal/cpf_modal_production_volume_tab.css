@@ -1,0 +1,20 @@
+#cpf_modal_production_volume_table th:nth-child(8), #cpf_modal_production_volume_table td:nth-child(8),
+#cpf_modal_production_volume_table th:nth-child(9), #cpf_modal_production_volume_table td:nth-child(9),
+#cpf_modal_production_volume_table th:nth-child(10), #cpf_modal_production_volume_table td:nth-child(10),
+#cpf_modal_add_user_defined_column_image, #cpf_modal_remove_user_defined_column_image
+{
+    display: none;
+}
+
+#cpf_modal_production_volume_table {
+    width: 100%;
+}
+
+#cpf_modal_production_volume_table input {
+    width: 100%;
+}
+
+#cpf_modal_add_user_defined_column_image, #cpf_modal_remove_user_defined_column_image {
+    height: 15px;
+    width: 15px;
+}

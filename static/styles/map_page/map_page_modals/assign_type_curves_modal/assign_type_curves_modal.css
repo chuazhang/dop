@@ -1,0 +1,20 @@
+#type_curve_Production_volume_table th:nth-child(8), #type_curve_Production_volume_table td:nth-child(8),
+#type_curve_Production_volume_table th:nth-child(9), #type_curve_Production_volume_table td:nth-child(9),
+#type_curve_Production_volume_table th:nth-child(10), #type_curve_Production_volume_table td:nth-child(10),
+#type_curve_add_user_defined_column_image, #type_curve_remove_user_defined_column_image
+{
+    display: none;
+}
+
+#type_curve_Production_volume_table {
+    width: 100%;
+}
+
+#type_curve_Production_volume_table input {
+    width: 100%;
+}
+
+#type_curve_add_user_defined_column_image, #type_curve_remove_user_defined_column_image {
+    height: 15px;
+    width: 15px;
+}

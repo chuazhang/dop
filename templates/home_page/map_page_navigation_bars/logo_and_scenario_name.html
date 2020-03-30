@@ -1,0 +1,28 @@
+<LINK href="{{ url_for('static', filename='styles/map_page/map_page_navigation_bars/logo_and_scenario_name_style.css')}}" rel="stylesheet" type="text/css">
+
+<div id='suncor_logo_div'>
+    <table>
+        <tr>
+            <td id='suncor_logo_td'><img id='suncor_logo_icon_size' src='static/images/logos/Suncor_Energy_Logo.svg'></td>
+            <td>
+                <table>
+                    <tr>
+                        <td><label class='label_bold_blue'>Current scenario is: </label></td>
+                        <td><label id='scenario_name_label' class='label_bold_black'>Untitled_Scenario</label></td>
+                        <td><img id='scenario_name_pencil' src='static/images/map_page/Pencil Button.svg' ></td>
+                        <td><input id='scenario_name_input' class='label_bold_blue display_none'/></td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <td><label class='label_bold_blue'>Base scenario for this scenario is: </label></td>
+                        <td colspan="3"><label id='base_scenario_name_label' class='label_bold_black'>Click here to choose base scenario.</label></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div> 
+
+<!-- show ribbon business and analysis menu -->
+<script type="text/javascript" src="{{url_for('static', filename='scripts/map_page/map_page_navigation_bars/change_scenario_name_at_top_left_bar.js')}}"></script>

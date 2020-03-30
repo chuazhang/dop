@@ -1,0 +1,66 @@
+<!-- later css overrides prior css styles-->
+	<!-- style for modal -->
+	<LINK href="{{ url_for('static', filename='styles/map_page/map_page_modals/cpf_modal/cpf_modal_production_volume_tab.css')}}" rel="stylesheet" type="text/css">
+
+<p>	
+	<form name="cpf_modal_production_volume_information_form" id="cpf_modal_production_volume_information_form" autocomplete="off">
+	    <!-- the cell id is super important for the functionality. It is called whenever we save data associated with the modal in database. This is the id that the data is saved with.-->
+	    <input type='number' class="display_none" id="cell_id_of_cpf_cell_selected" name='cell_id_of_cpf_cell_selected'>
+		<input type="text" id='CPF_Name' name='CPF_Name' placeholder="CPF name">
+	    	<table id="cpf_modal_production_volume_table">
+	    		<tr>
+	    			<th id="cpf_modal_first_column"> </th>
+					<th id="cpf_modal_imaginary_space">  &nbsp; </th>
+					<th id="cpf_modal_date_column">Date</th>
+	    			<th id="cpf_modal_second_column"> Produced Oil  </th>
+	    			<th id="cpf_modal_produced_water_column"> Produced Water  <br> </th>
+	    			<th id="cpf_modal_injected_steam"> Injected Steam </th>
+					<th id="cpf_modal_produced_gas_column"> Produced Gas </th>
+					<th id='cpf_modal_user_defined_column_1'>Column 1</th>
+					<th id='cpf_modal_user_defined_column_2'>Column 2</th>
+					<th id='cpf_modal_user_defined_column_3'>Column 3</th>
+					<th id='cpf_modal_add_or_remove_column_buttons'>
+						<img src="{{url_for('static', filename='images/map_page/zoom_in.png')}}" id="cpf_modal_add_user_defined_column_image"> 
+						<br>
+						<img src="{{url_for('static', filename='images/map_page/zoom_out.png')}}" id="cpf_modal_remove_user_defined_column_image"> 
+					</th>
+	    		</tr>
+
+	    		<tr class="text_align_center">
+	    			<td>  </td>
+					<td>  &nbsp; </td>
+					<td> [mm/dd/yyyy] </td>
+	    			<td> [BPD] </td>
+	    			<td> [bbl/Day] </td>
+	    			<td> [m3/Day] </td>
+					<td> [m3/Day] </td>
+					<td> [unit_1]</td>
+					<td> [unit_2]</td>
+					<td> [unit_3]</td>
+	    		</tr>
+
+	    		{% for row in list_of_rows %}
+	    			<tr class="text_align_center">
+	    				<td> {{row}} </td>
+						<td>  &nbsp; </td>
+						<td> <input type='text' id='cpf_modal_{{row}}_Forecasted_Date' name='cpf_modal_{{row}}_Forecasted_Date' class='modal_input_box' autocomplete="off" placeholder='mm/dd/yyyy' value='0{{row}}/01/2021'></td>
+	    				<td> <input type='text' id='cpf_modal_{{row}}_Produced_Oil' name='cpf_modal_{{row}}_Produced_Oil' class='modal_input_box' autocomplete="off"> </td>
+	    				<td> <input type='text' id='cpf_modal_{{row}}_Produced_Water' name='cpf_modal_{{row}}_Produced_Water' class='modal_input_box' autocomplete="off"> </td>
+	    				<td> <input type='text' id='cpf_modal_{{row}}_Injected_Steam' name='cpf_modal_{{row}}_Injected_Steam' class='modal_input_box' autocomplete="off"> </td>
+						<td> <input type='text' id='cpf_modal_{{row}}_Produced_Gas' name='cpf_modal_{{row}}_Produced_Gas' class='modal_input_box' autocomplete="off"> </td>
+						<td> <input type='text' id='cpf_modal_{{row}}_User_Defined_Column_1_Value' name='cpf_modal_{{row}}_User_Defined_Column_1_Value' class='modal_input_box' autocomplete="off"> </td>
+						<td> <input type='text' id='cpf_modal_{{row}}_User_Defined_Column_2_Value' name='cpf_modal_{{row}}_User_Defined_Column_2_Value' class='modal_input_box' autocomplete="off"> </td>
+						<td> <input type='text' id='cpf_modal_{{row}}_User_Defined_Column_3_Value' name='cpf_modal_{{row}}_User_Defined_Column_3_Value' class='modal_input_box' autocomplete="off"> </td>
+	    			</tr>
+	    		{% endfor %}
+			</table>
+			
+			    <input type="submit" name='save_button_for_assign_cpf_forecasts' id='save_button_for_assign_cpf_forecasts' value='Save'>
+			    <span id='cpf_modal_pad_production_volume_modal_save_check_mark' class="display_none">&#9989;</span>
+			</p>
+	</form>
+</p>
+
+
+<!-- Script that grabs forecasted production volume saved in the database by user and displays it in the pad modal production volume table  
+<script type="text/javascript" src="{{url_for('static', filename='scripts/map_page/map_page_modals/pad_modal/asynchronously_grab_production_volume_for_pads_from_database.js')}}"></script>-->

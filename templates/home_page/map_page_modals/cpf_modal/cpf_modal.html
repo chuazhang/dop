@@ -1,0 +1,48 @@
+<!-- later css overrides prior css styles-->
+	<!-- style for graph tab of cpf modal -->
+  <LINK href="{{ url_for('static', filename='styles/map_page/map_page_modals/cpf_modal/cpf_modal_graph.css')}}" rel="stylesheet" type="text/css">
+  
+
+    
+<div class="w3-container">
+  
+    <div class="w3-bar tab">
+      <button id='cpf_production_volume_tab_button' class="w3-bar-item w3-button cpf_tablink tab_selected" >Production Volume</button>
+      <button id='cpf_charts_tab_button' class="w3-bar-item w3-button cpf_tablink">Charts</button>
+      <button id='cpf_capex_and_opex_tab_button' class="w3-bar-item w3-button cpf_tablink">CPF CAPEX and OPEX</button>
+      <button id='cpf_export_tab_button' class="w3-bar-item w3-button cpf_tablink">Export</button>
+    </div>
+    
+    <div id="CPF_Production_Volume_Tab" class="w3-container w3-border cpf_tab">
+      {% include 'home_page/map_page_modals/cpf_modal/cpf_modal_production_volume_tab.html' %}
+    </div>
+  
+    <div id="CPF_Charts_Tab" class="w3-container w3-border cpf_tab display_none">
+      <div id='cpf_modal_graph_tab_graph_div'>
+          
+      </div> 
+    </div>
+  
+    <div id="CPF_CAPEX_and_OPEX" class="w3-container w3-border cpf_tab display_none">
+      <h2>CPF CAPEX and OPEX scalars</h2>
+      <p>CPF CAPEX and OPEX scalars will go here.</p>
+    </div>
+
+    <div id="CPF_Export_Tab" class="w3-container w3-border cpf_tab display_none">
+      <h2>Choose Export Format</h2>
+      <select id='cpf_export_type'>
+        <option disabled selected>Select export type</option>
+        <option value='Excel'>Excel</option>
+        <option value='CSV'>CSV</option>
+        <option value='JSON'>JSON</option>
+        <option value='XML'>XML</option>
+      </select>
+      <p id='cpf_export_url'>&nbsp;</p>
+    </div>
+
+  </div>
+
+  <!-- asynchronously graphs the production volume graph for this cpf modal -->
+  <script type="text/javascript" src="{{url_for('static', filename='scripts/map_page/map_page_modals/cpf_modal/asynchronously_graph_production_volume_for_cpf_modal.js')}}"></script>
+  
+  

@@ -1,0 +1,89 @@
+.form, input {
+    font-family: Tahoma, Calibri, Verdana, Geneva, sans-serif;
+    font-weight: normal;
+    font-size: 12px;
+    border-radius:6px;
+    border:1px #D5DFEB solid;
+}
+.div, p {
+    font-family:Tahoma, Calibri, Verdana, Geneva, sans-serif;
+    font-weight: bold;
+    color: #005596;
+    font-size: 16px;
+}
+.table, th, td {
+    color: #005596;
+    font-size: 12px;
+}
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #EAEFF5;
+}
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+.tab_selected {
+    background-color: #005596;
+    color:white;
+}
+.tab button:hover {
+    background-color: #D5DFEB;
+}
+.tab button.active {
+    background-color: #ccc;
+}
+.td_disc_bullet {
+    list-style-type: disc;
+    padding-left: 17px;
+}
+.td_decimal_bullet {
+    list-style-type: decimal;
+    padding-left: 22px;
+}
+.tr_light {
+    background-color: #D5DFEB;
+}
+.tr_heavy {
+    background-color: #EAEFF5;
+}
+.label_bold_black {
+    font-family: Tahoma, Calibri, Verdana, Geneva, sans-serif;
+    font-weight: bolder;
+    font-size: 12px;
+    color: black;
+}
+.label_bold_blue {
+    font-family: Tahoma, Calibri, Verdana, Geneva, sans-serif;
+    font-weight: bolder;
+    font-size: 12px;
+    color: #005596;
+}
+.label_black {
+    font-family: Tahoma, Calibri, Verdana, Geneva, sans-serif;
+    font-size: 12px;
+    color: black;
+}
+.label_blue {
+    font-family: Tahoma, Calibri, Verdana, Geneva, sans-serif;
+    font-size: 12px;
+    color: #005596;
+}
+select {
+    font-style: normal;
+    font-weight: normal;
+    font-size: small;
+    font-family:Tahoma, Calibri, Verdana, Geneva, sans-serif;
+    color:#005596;
+}
+textarea {
+    border-radius: 15px;
+    box-shadow: 2px 2px 2px 0px #D5DFEB;
+}

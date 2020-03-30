@@ -1,0 +1,8 @@
+#ChangeHistoryModal.modal {
+    padding-top: 200px;
+  }
+  
+  #ChangeHistoryModal .modal-content {
+    min-width: 700px;
+    width: 70%;
+  }

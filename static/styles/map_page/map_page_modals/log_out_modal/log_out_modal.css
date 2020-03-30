@@ -1,0 +1,35 @@
+#LogOutModal .modal-content {
+    width: 23%;
+    min-width: 330px;
+}
+  
+.image_label_centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+  
+.imgHolder {
+    position: relative;
+}
+  
+.imgHolder span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-family:Tahoma, Calibri, Verdana, Geneva, sans-serif;
+    font-size: xx-large;
+}
+  
+.logout_label {
+    font-size: 15px;
+}
+
+#login_image {
+    width:50;
+    height:50;
+}
